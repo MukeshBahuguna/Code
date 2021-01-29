@@ -4,7 +4,6 @@ from collections import *
 
 def dfsOfGraph(g,visited,start,path):
     path.append(start)
-    print(path)
     visited[start]=True
     for neighbour in g[start]:
         if not visited[neighbour]:
