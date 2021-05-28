@@ -22,3 +22,27 @@ path=[]
 visited=defaultdict(bool)
 ans = dfsOfGraph(g,visited,start,path)
 print(ans)
+
+#OR using adjacency matrix
+
+def dfsOfGraph(adj_mat,visited2,start,path):
+    path.append(start)
+    visited2[start]=True
+    for i in range(len(visited2)):# or number of vert(V)
+        if adj_mat[start][i]>0 and not visited2[i]:
+            dfsOfGraph(adj_mat,visited2,i,path)
+    return path
+
+V, E = map(int, input().split())
+adj_mat=[[0 for i in range(V)] for j in range(V)]
+for _ in range(E):
+    u, v = map(int, input().split())
+    adj_mat[u][v]=1
+    adj_mat[v][u]=1
+
+start=0
+path=[]
+#visited=defaultdict(bool) # or a list
+visited2=[False]*V #purpose same as above but this is a lists
+ans = dfsOfGraph(adj_mat,visited2,start,path)
+print(ans)
