@@ -20,7 +20,10 @@ for _ in range(E):
 start=0
 path=[]
 visited=defaultdict(bool)
-ans = dfsOfGraph(g,visited,start,path)
+ans=[]
+for i in range(0,V):
+    if not visited[i]:
+        ans+= dfsOfGraph(g,visited,start,path)
 print(ans)
 
 #OR using adjacency matrix
@@ -44,5 +47,8 @@ start=0
 path=[]
 #visited=defaultdict(bool) # or a list
 visited2=[False]*V #purpose same as above but this is a lists
-ans = dfsOfGraph(adj_mat,visited2,start,path)
+ans=[]
+for i in range(0,V):
+    if not visited2[i]:
+        ans+= dfsOfGraph(adj_mat,visited2,start,path)
 print(ans)
