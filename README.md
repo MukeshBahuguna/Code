@@ -1,2 +1,3 @@
 # Code
-will be adding more
+updating weekly :D!
+
