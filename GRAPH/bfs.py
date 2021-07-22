@@ -12,6 +12,24 @@ def bfsOfGraph(adj_mat,visited2,start,path):
                 visited2[i]=True     
     return path
 
+# to get nodes of each level
+def bfsOfGraph(self,adj_mat,visited2,start,v2,path):
+        visited2[start]=True
+        q=[start]
+        arr=[[start]]
+        while q:
+            a=q.pop(0)
+            s=[]
+            for i in range(len(visited2)):
+                if adj_mat[a][i]>0 and not visited2[i]:
+                    q.append(i)
+                    s.append(i)
+                    visited2[i]=False
+            if s:
+                arr.append(s)
+        
+        return arr        
+
 # Using adj_matrix
 V, E = map(int, input().split())
 adj_mat=[[0 for i in range(V)] for j in range(V)]
@@ -28,7 +46,7 @@ for i in range(0,V):
     if not visited2[i]:
         ans += bfsOfGraph(adj_mat,visited2,start,path)
 print(ans)
-#########################################  use above part as main OR the below one
+#########################################  use above part OR the below one
 
 def bfsOfGraph(g,N,start):
     # code here

@@ -1,3 +1,4 @@
+from collections import *
 # ############# Noob version
 
 # def dfsOfGraph(adj_mat,visited2,start,v2,path):
@@ -50,13 +51,13 @@ class Solution:
             print(path)
             self.c+=1
         else:
-            for i in range(len(visited2)):# or number of vert(V)
+            for i in range(len(visited2)):                #----->or number of vert(V)
                 if adj_mat[start][i]>0 and not visited2[i]:
                     self.dfsOfGraph(adj_mat,visited2,i,v2,path)
         path.pop()
         visited2[start]=False
 
-        
+
 if __name__ == '__main__':
     ob=Solution()
     V, E = map(int, input().split())
@@ -68,5 +69,5 @@ if __name__ == '__main__':
     visited2=[False]*V
     path=[]
     v1,v2=map(int,input().split())
-    ans=ob.dfsOfGraph(adj_mat,visited2,v1,v2,path)
-    print(ob.c)
+    ans=ob.bfsOfGraph(adj_mat,visited2,v1,v2,path)
+    print(ans)

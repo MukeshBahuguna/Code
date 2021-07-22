@@ -20,13 +20,13 @@ def dmain():
     thread = threading.Thread(target=main)
     thread.start()
     
-#from collections import deque, Counter, OrderedDict,defaultdict
-#from heapq import nsmallest, nlargest, heapify,heappop ,heappush, heapreplace
-#from math import log,sqrt,factorial,cos,tan,sin,radians
-#from bisect import bisect,bisect_left,bisect_right,insort,insort_left,insort_right
-#from decimal import *
-#import threading
-#from itertools import permutations
+# from collections import deque, Counter, OrderedDict,defaultdict
+# from heapq import nsmallest, nlargest, heapify,heappop ,heappush, heapreplace
+# from math import log,sqrt,factorial,cos,tan,sin,radians
+# from bisect import bisect,bisect_left,bisect_right,insort,insort_left,insort_right
+# from decimal import *
+# import threading
+# from itertools import permutations
 #Copy 2D list  m = [x[:] for x in mark] .. Avoid Using Deepcopy
 
 abc='abcdefghijklmnopqrstuvwxyz'
@@ -65,15 +65,15 @@ def gcd(x, y):
         x, y = y, x % y
     return x
     
-def isPrime(n) : # Check Prime Number or not 
+def isPrime(n): # Check Prime Number or not 
     if (n <= 1) : return False
     if (n <= 3) : return True
     if (n % 2 == 0 or n % 3 == 0) : return False
     i = 5
-    while(i * i <= n) : 
+    while i ** 2 <= n: 
         if (n % i == 0 or n % (i + 2) == 0) : 
             return False
-        i = i + 6
+        i += 6
     return True
 
 
@@ -84,22 +84,8 @@ def read():
 
 
 def main():
-    for _ in range(ii()):
-        n=ii()
-        a=li()
-        c=c1=0
-        for i in range(len(a)):
-            if i%2==0 and a[i]%2!=0:
-                c+=1
-            if i%2!=0 and a[i]%2==0:
-                c1+=1
-        
-        if c!=c1:
-            print(-1)
-        else:
-            print(c)
-
-
+    #*********code here***********#
+    pass
 
 # region fastio
 # template taken from https://github.com/cheran-senthil/PyRival/blob/master/templates/template.py
