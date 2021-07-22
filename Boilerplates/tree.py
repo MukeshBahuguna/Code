@@ -33,5 +33,5 @@ if __name__=="__main__":
     root.right.left = Node(5)
     root.right.left.left = Node(6)
 
-    print(h(root))
+    print(bfs(root))
 
