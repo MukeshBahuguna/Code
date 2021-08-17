@@ -85,7 +85,46 @@ def read():
 
 def main():
     #*********code here***********#
-    pass
+    for _ in range(ii()):
+        n=ii()
+        s=list(si())
+        
+        ind=len(s)+1
+        for i in range(len(s)):
+            if s[i]!='?':
+                ind=i
+                break
+        
+        temp='B'
+        if ind==len(s)+1:
+            for i in range(len(s)):
+                s[i]=temp
+                if s[i]=='B':
+                    temp='R'
+                else:
+                    temp='B'
+            print(''.join(s))
+            continue
+        
+        x=s[ind]
+
+        for i in range(ind,-1,-1):
+            if s[i]=='?' and x=='B':
+                s[i]='R'
+            elif s[i]=='?' and x=='R':
+                s[i]='B'
+            x=s[i]
+
+        x=s[ind]
+        for i in range(ind+1,len(s)):
+            if s[i]=='?' and x=='B':
+                s[i]='R'
+            elif s[i]=='?' and x=='R':
+                s[i]='B'
+            x=s[i]
+        print(''.join(s))
+            
+
 
 # region fastio
 # template taken from https://github.com/cheran-senthil/PyRival/blob/master/templates/template.py
