@@ -83,47 +83,36 @@ def read():
     sys.stdout = open('output.txt', 'w') 
 
 
+def check(a,n,k,dist):
+    cow=a[0]
+    c=1
+    for i in range(1,n):
+        if (a[i]-cow)>=dist:
+            c+=1
+            cow=a[i]
+
+    return True if c==k else False
+
 def main():
     #*********code here***********#
     for _ in range(ii()):
-        n=ii()
-        s=list(si())
-        
-        ind=len(s)+1
-        for i in range(len(s)):
-            if s[i]!='?':
-                ind=i
-                break
-        
-        temp='B'
-        if ind==len(s)+1:
-            for i in range(len(s)):
-                s[i]=temp
-                if s[i]=='B':
-                    temp='R'
-                else:
-                    temp='B'
-            print(''.join(s))
-            continue
-        
-        x=s[ind]
-
-        for i in range(ind,-1,-1):
-            if s[i]=='?' and x=='B':
-                s[i]='R'
-            elif s[i]=='?' and x=='R':
-                s[i]='B'
-            x=s[i]
-
-        x=s[ind]
-        for i in range(ind+1,len(s)):
-            if s[i]=='?' and x=='B':
-                s[i]='R'
-            elif s[i]=='?' and x=='R':
-                s[i]='B'
-            x=s[i]
-        print(''.join(s))
+        n,k=mi()
+        a=[]
+        for i in range(n):
+            a.append(ii())
             
+        a.sort()
+        l=0
+        r=a[n-1]
+        ans=-1
+        while l<r:
+            mid=l+(r-l+1)//2
+            if check(a,n,k,mid):
+                ans=mid
+                l=mid
+            else:
+                r=mid-1
+        print(ans)
 
 
 # region fastio
