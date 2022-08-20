@@ -16,15 +16,17 @@ class Solution:
             s=[]
             for i in range(l):
                 a=q.popleft()
-                s.append(a.val)
                 
+                if(not flag):
+                    s.insert(0,a.val)
+                else: s.append(a.val)
+
                 if a.left:
                     q.append(a.left)
                 if a.right:
                     q.append(a.right)
-              
-            if not flag: ans.append(s[::-1][:])
-            else: ans.append(s[:])
+
+            ans.append(s[:])
             flag=not flag
             
         return ans
