@@ -19,8 +19,6 @@ class Solution {
                 if((nums[q[i][1]]+q[i][0])%2==0) e+=(nums[q[i][1]]+q[i][0]);
             
             nums[q[i][1]]+=q[i][0];
-            
-            // System.out.println(Arrays.toString(nums));
             a[j++]=e;
         }
         return a;
