@@ -14,24 +14,22 @@
  * }
  */
 class Solution {
-    Map<Integer, Integer> m=new HashMap<>(); 
     public List<Integer> rightSideView(TreeNode root) {
         List<Integer> result = new ArrayList<Integer>();
         rightView(root, result, 0);
         return result;
     }
     
-    public void rightView(TreeNode curr, List<Integer> result, int currDepth ){
+    public void rightView(TreeNode curr, List<Integer> result, int currDepth){
         if(curr == null){
             return;
         }
-        if(!m.containsKey(currDepth) ){
+        if(currDepth == result.size()){
             result.add(curr.val);
-            m.put(currDepth,curr.val);
         }
         
         rightView(curr.right, result, currDepth + 1);
-        rightView(curr.left, result, currDepth + 1 );
+        rightView(curr.left, result, currDepth + 1);
         
     }
 }
