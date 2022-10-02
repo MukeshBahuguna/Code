@@ -15,36 +15,21 @@
  */
 class Solution {
     public boolean isSymmetric(TreeNode root) {
-        if(root==null) return true;
-        List<Integer> l= new ArrayList<>();
-        List<Integer> l1= new ArrayList<>();
-        pre(root,l);
-        mpre(root,l1);
-        System.out.println(l+ " "+l1);
-        for(int i=0 ; i<l.size(); i++){
-           if(l.get(i)!=l1.get(i)) return false;
+        //similar two node logic in recursion as well
+        if (root == null) return true;
+        Stack<TreeNode> stack = new Stack<>();
+        stack.push(root.left);
+        stack.push(root.right);
+        while (!stack.empty()) {
+            TreeNode n1 = stack.pop(), n2 = stack.pop();
+            if (n1 == null && n2 == null) continue;
+            if (n1 == null || n2 == null || n1.val != n2.val) return false;
+            stack.push(n1.left);
+            stack.push(n2.right);
+            stack.push(n1.right);
+            stack.push(n2.left);
         }
         return true;
-        
     }
-    public void pre (TreeNode root,List<Integer> l){
-        if(root!=null){
-            l.add(root.val);
-            pre(root.left,l);
-            pre(root.right,l);
-        }
-        else{
-            l.add(-1);
-        }
-    }
-    public void mpre (TreeNode root,List<Integer> l1){
-        if(root!=null){
-            l1.add(root.val);
-            mpre(root.right,l1);
-            mpre(root.left,l1);
-        }
-        else{
-            l1.add(-1);
-        }
-    }
+    
 }
