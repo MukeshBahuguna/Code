@@ -19,7 +19,7 @@ class TimeMap {
         if(treeMap==null) {
             return "";
         }
-        Integer floor = treeMap.floorKey(timestamp);
+        Integer floor = treeMap.floorKey(timestamp); //or apply binary search
         if(floor==null) {
             return "";
         }
