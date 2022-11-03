@@ -1,35 +1,38 @@
 class Solution {
     public int longestPalindrome(String[] words) {
-        int ans=0;
-        int n=words.length;
-        
-        Map<String,Integer> map= new HashMap<>();
-        Map<String,Integer> map1= new HashMap<>();
-        int max=0;
-        
-        for (int i=0 ;i<n ;i++){
-            if(words[i].charAt(0)==words[i].charAt(1))    
-                map1.put(words[i],  map1.getOrDefault(words[i],0)+1);
- 
+
+        Map<String, Integer> map = new HashMap<>();
+        int n = words.length;
+        int ans = 0;
+
+        List<Integer> singles = new ArrayList<>();
+
+        for(int i = 0; i < n; i++){
+            String requiredPair = getPalindromicPair(words[i]);
+            if(words[i].equals(requiredPair))
+                singles.add(i);
+  
+            if(map.containsKey(words[i]) && map.get(words[i]) > 0){
+                ans += 4;
+                map.put(words[i], map.get(words[i])-1);
+            }
             else{
-                String str= "" +words[i].charAt(1) + "" +words[i].charAt(0);
-                if(map.containsKey(str) && map.get(str)>=1){
-                    ans+=4;
-                    map.put(str,map.get(str)-1);
-                    map.put(words[i],  map.getOrDefault(words[i],0)-1);
-                } 
-                map.put(words[i],  map.getOrDefault(words[i],0)+1);  
+                map.put(requiredPair, map.getOrDefault(requiredPair, 0)+1);
             }
         }
-        boolean flag=true;
-        for(String x: map1.keySet()){
-            int c=map1.get(x);
-            if(c%2!=0) flag=false;
-            
-            ans+= (c/2)*4;
+        n = singles.size();
+        for(int i = 0; i < n; i++){
+            if(map.get(words[singles.get(i)]) > 0)
+                return ans+2;
         }
-        if(!flag) ans+=2;
         return ans;
-      
+    }
+
+    private String getPalindromicPair(String s){
+        StringBuilder sb = new StringBuilder();
+        sb.append(s.charAt(1));
+        sb.append(s.charAt(0));
+        
+        return sb.toString();
     }
 }
