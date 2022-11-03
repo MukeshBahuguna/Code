@@ -21,7 +21,6 @@ class Solution {
                 map.put(words[i],  map.getOrDefault(words[i],0)+1);  
             }
         }
-        // System.out.println(map);
         boolean flag=true;
         for(String x: map1.keySet()){
             int c=map1.get(x);
