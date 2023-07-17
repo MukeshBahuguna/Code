@@ -1,26 +1,27 @@
 class Solution {
-    public String customSortString(String a, String s) {
-        String str= "";
-        Map<Character , Integer> map = new HashMap<>();
- 
-        for(int i =0 ; i<s.length() ;i++){
-            char ch = s.charAt(i);
-            map.put(ch,map.getOrDefault(ch,0)+1);
+    public String customSortString(String X, String Y) {
+        int[] charCount = new int[26];
+        for(char c : Y.toCharArray()){
+            charCount[c - 'a']++;
         }
         
-        for(int i =0 ; i<a.length() ;i++){
-            char ch = a.charAt(i);
-            while(map.containsKey(ch) && map.get(ch)>0){
-                str+= ch;
-                map.put(ch,map.get(ch)-1);
+        StringBuilder sb = new StringBuilder();
+        
+        //first store char in same order of String X
+        for(char c : X.toCharArray()){
+            while(charCount[c - 'a'] --> 0){
+                sb.append(c);
             }
         }
-        for(int i =0 ; i<s.length() ;i++){
-            char ch = s.charAt(i);
-            if(map.get(ch)!=0) str+= ch;
+        
+        //now store remaining char of string Y
+        for(int i = 0; i < 26; i++){
+            char c = (char)('a' + i);
+            while(charCount[i] --> 0){
+                sb.append(c);
+            }
         }
         
-        return str;
-        
+        return sb.toString();
     }
 }
