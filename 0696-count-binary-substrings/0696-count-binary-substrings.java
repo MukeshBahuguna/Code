@@ -1,21 +1,24 @@
 class Solution {
     public int countBinarySubstrings(String s) {
-        int ans=0 ,i=0 ,j=0,prev=0;
-        int n= s.length();
-        while(i<n && j<n){
-            prev=i;
-            char c1= s.charAt(i); 
-            while(i<n && s.charAt(i) == c1) i++;
-            
-            if(i>=n) return ans;
-            
-            j=i; 
-            char c2= s.charAt(j);
-            while(j<n && s.charAt(j) == c2) j++; 
-            
-            ans+=Math.min(i-prev , j-i);
-  
-        }
-        return ans;
+        int count = 0;
+         char[]  arr = s.toCharArray();
+         if(arr.length == 0) return 0;
+         int currentCount = 1;
+         int stateCount = 0;
+         char state = arr[0];
+
+         for(int i = 1; i<arr.length ; i++){
+                if(state==arr[i]) {
+                    currentCount++;
+                    if(stateCount>=currentCount) count++;
+                }
+                else{
+                state=arr[i];
+                stateCount = currentCount;
+                currentCount = 1;
+                count++;
+                }      
+         }
+        return count;
     }
 }
