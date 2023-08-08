@@ -1,20 +1,16 @@
 class Solution {
     public String finalString(String s) {
-        int n =s.length();
-        StringBuilder str=new StringBuilder();
-        int i=0;
-        
-        while(i<n){
-            if(s.charAt(i) == 'i'){
-                str.reverse();
-            }
-            else {
-                str.append(s.charAt(i));
-            }
-            i+=1;
-            
+        var flip = false;
+        var list = new LinkedList<Character>();
+        for (var c : s.toCharArray()){
+            if (c=='i') {
+                flip=!flip; 
+                continue;
+            } 
+            if (flip) list.addFirst(c); else list.addLast(c);
         }
-       
-        return new String(str);
+        var sb = new StringBuilder();
+        for (var c:list) sb.append(c);
+        return flip?sb.reverse().toString():sb.toString();
     }
 }
