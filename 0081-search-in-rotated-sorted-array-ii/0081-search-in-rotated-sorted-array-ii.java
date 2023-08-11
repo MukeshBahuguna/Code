@@ -28,7 +28,6 @@ class Solution {
                 
             }
         }
-        // System.out.println(i +  " " + j) ;
         return j>=0 ? nums[j]==target : nums[i]==target;
         
     }
