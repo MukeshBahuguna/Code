@@ -16,8 +16,8 @@ class Solution {
         }
         while(!s.isEmpty()){
             String ss=s.pop();
-            ans= ss+ "/" +ans;
+            ans= (ans.length()==0 ? ss : ss +"/")+ans;
         }
-        return ans.length() >0 ? "/"+ ans.substring(0,ans.length()-1) : "/";
+        return  "/"+ ans;
     }
 }
