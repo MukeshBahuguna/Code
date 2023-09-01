@@ -1,17 +1,14 @@
 class Solution {
     public int[] countBits(int n) {
-        int[] a = new int[n+1];
-        for(int i=0 ; i<=n ; i++){
-            a[i] = setBits(i);
+        int[] ans=new int[n+1];
+        Arrays.fill(ans,1);
+        ans[0]=0;
+        int p=0;
+        for(int i=1;i<=n;i++)
+        {
+            if((i & (i-1))==0) p=i;
+            else ans[i]=ans[p]+ans[i-p];
         }
-        return a;
-    }
-    
-    public int setBits(int x){
-        int c=0;
-        for(int i=0 ; i<32 ;i++){
-            if((x & (1<<i))!=0) c+=1;
-        }
-        return c;
+        return ans;
     }
 }
