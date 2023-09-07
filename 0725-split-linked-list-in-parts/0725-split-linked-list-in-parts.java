@@ -25,19 +25,10 @@ class Solution {
         int i=0;
         ListNode[] ans = new ListNode[k];
         
-        if(q==0){
-            while(t!=null){
-                ListNode curr =t.next;
-                t.next=null;
-                ans[i++]=t;
-                t=curr;
-            }
-        }
-        else{
-           while(t!=null){
+        while(t!=null){
             ListNode curr =t.next;
-            if(c==q){
-                if(rem>0){
+            if(q==0 || c==q){
+                if(q!=0 && rem>0){
                     t=t.next;
                     curr=t.next;
                     rem-=1;
@@ -51,10 +42,8 @@ class Solution {
             }
             c+=1;
             t=curr;
-            } 
-        }
-        
-        
+        } 
+
         return ans;
             
     }
