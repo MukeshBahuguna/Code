@@ -2,14 +2,13 @@ class Solution {
     public String largestGoodInteger(String num) {
         int n= num.length();
         int i=0 ,k=3;
-        String ans="";
-        String temp="";
+        String ans="" ,temp="";
         while(i<n){
             if(temp.length()==k){
-                if(ans.length()==0 ) ans=new String(temp);
+                if(ans.length()==0 ) ans=temp;
                 else if(ans.compareTo(temp)<0){
-                    ans=new String(temp);
-                    temp="";
+                    ans=temp;
+                    temp=new String();
                 }
             }
             
@@ -17,7 +16,7 @@ class Solution {
             temp+=num.charAt(i);
             i+=1;  
         }
-        if(temp.length()==k && ans.compareTo(temp)<0) ans=new String(temp);
+        if(temp.length()==k && ans.compareTo(temp)<0)ans=temp;
         return ans;
     }
 }
