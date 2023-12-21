@@ -1,20 +1,12 @@
 class Solution {
     public int[][] divideArray(int[] nums, int k) {
         Arrays.sort(nums);
-        System.out.println(Arrays.toString(nums));
-        int t=3 , n =nums.length;
-        int c=0;
-        int[][] a= new int[n/t][t];
-        for(int i=0 ; i<n ;i+=t){
-            int j=i ,temp=0;
-            while(temp<t){
-                if(nums[j]-nums[i]> k) return new int[0][0];
-                else a[c][j%t]= nums[j];
-                j+=1;
-                temp+=1;
-            }
-            c+=1;
+        int n=nums.length;
+        int [][] ans = new int[n/3][3];
+        for(int i = 2; i < nums.length; i+= 3){
+            if(nums[i] - nums[i-2] > k) return new int[0][0];
+            ans[i/3] = new int[]{nums[i-2], nums[i-1],nums[i]};
         }
-        return a;
+        return ans;
     }
 }
