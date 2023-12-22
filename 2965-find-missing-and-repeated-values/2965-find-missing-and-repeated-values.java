@@ -1,14 +1,24 @@
 class Solution {
-    public int[] findMissingAndRepeatedValues(int[][] grid) {
-        long sum = 0, sqrSum = 0, n = grid.length, N = n*n;
-        
-        for(int i = 0; i < n; ++i){
-            for(int j = 0; j < n; ++j){
-                sum += grid[i][j];
-                sqrSum += grid[i][j] * grid[i][j];
+    public int[] findMissingAndRepeatedValues(int[][] arr) {
+        int size= arr.length;
+        int[] ans =new int[2];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                int abs_val = Math.abs(arr[i][j]);
+                double temp = (double)abs_val / size;
+                int row = (int)Math.ceil(temp) -1;
+                int col= abs_val%size==0 ? size-1: (abs_val%size) -1;
+                if (arr[row][col] > 0) arr[row][col] = -arr[row][col];
+                else ans[0]=abs_val;
             }
         }
-        long c1 = sum - N * (N + 1)/2,  c2 = sqrSum - N*(N+1)*(2*N + 1)/6;
-        return new int[]{(int)(c2/c1 + c1)/2, (int)(c2/c1 - c1)/2};
+        int c=0;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                c+=1;
+                if (arr[i][j] > 0) ans[1] = c;
+            }
+        }
+        return ans;
     }
 }
