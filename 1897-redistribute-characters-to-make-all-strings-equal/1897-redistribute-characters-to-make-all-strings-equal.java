@@ -10,9 +10,7 @@ class Solution {
                 a[ch-97]+=1;
             }
         }
-        for(int i=0; i<a.length;i++){
-            if(a[i]%n!=0) return false;
-        }
+        for(int i=0; i<a.length;i++) if(a[i]%n!=0) return false;
         return true;
     }
 }
