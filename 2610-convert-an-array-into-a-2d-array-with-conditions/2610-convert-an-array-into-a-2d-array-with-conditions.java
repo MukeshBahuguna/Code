@@ -1,27 +1,24 @@
 class Solution {
     public List<List<Integer>> findMatrix(int[] nums) {
         int n =nums.length;
-        int[] a =new int[n+1];
+        Map<Integer , Integer> m = new HashMap<>();
         
         List<List<Integer>> l =new ArrayList<>();
         int max=0;
         for(int i=0 ;i<n ;i++){
-            a[nums[i]]+=1;
-            max=Math.max(max ,a[nums[i]]);
+            m.put(nums[i] , m.getOrDefault(nums[i],0)+1);
+            max=Math.max(max ,m.get(nums[i]));
         }
         
         for(int i=0 ;i<max ;i++) l.add(new ArrayList<>());
         
-        int c=0;
-        for(int i=0 ;i<l.size() ;i++){
-            for(int j=0 ; j<n+1  ;j++){
-                if(a[j]!=0){
+        for(int j : m.keySet()){
+            for(int i=0 ;i<l.size() ;i++){
+                if(m.get(j)!=0){
                     l.get(i).add(j);
-                    a[j]-=1;
+                    m.put(j , m.get(j)-1);
                 }
-                else c+=1;
             } 
-            if(c==a.length) break;
         }
         return l;
     }
