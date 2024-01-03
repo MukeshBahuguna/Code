@@ -1,25 +1,29 @@
 class Solution {
-    public List<List<Integer>> findMatrix(int[] nums) {
-        int n =nums.length;
-        Map<Integer , Integer> m = new HashMap<>();
-        
-        List<List<Integer>> l =new ArrayList<>();
-        int max=0;
-        for(int i=0 ;i<n ;i++){
-            m.put(nums[i] , m.getOrDefault(nums[i],0)+1);
-            max=Math.max(max ,m.get(nums[i]));
+    public List<List<Integer>> findMatrix(int[] v) {
+        Map<Integer, Integer> um = new HashMap<>();
+        for (int i : v) {
+            um.put(i, um.getOrDefault(i, 0) + 1);
         }
         
-        for(int i=0 ;i<max ;i++) l.add(new ArrayList<>());
-        
-        for(int j : m.keySet()){
-            for(int i=0 ;i<l.size() ;i++){
-                if(m.get(j)!=0){
-                    l.get(i).add(j);
-                    m.put(j , m.get(j)-1);
+        List<List<Integer>> ans = new ArrayList<>();
+        while (!um.isEmpty()) {
+            List<Integer> temp = new ArrayList<>();
+            List<Integer> toErase = new ArrayList<>();
+            for (Map.Entry<Integer, Integer> entry : um.entrySet()) {
+                int f = entry.getKey();
+                int s = entry.getValue();
+                temp.add(f);
+                s--;
+                if (s == 0) {
+                    toErase.add(f);
                 }
-            } 
+                um.put(f, s);
+            }
+            ans.add(temp);
+            for (int i : toErase) {
+                um.remove(i);
+            }
         }
-        return l;
+        return ans;
     }
 }
