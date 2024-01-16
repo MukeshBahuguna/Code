@@ -1,22 +1,27 @@
 class Solution {
-    public List<List<Integer>> findWinners(int[][] arr){
-        Map<Integer,Integer>  m = new TreeMap<>();
-        Map<Integer,Integer>  m1 = new TreeMap<>();
+    public List<List<Integer>> findWinners(int[][] matches){
+        int[] losses = new int[100001];
+
+        for (int i = 0; i < matches.length; i++) {
+            int win = matches[i][0];
+            int loss = matches[i][1];
+
+            if (losses[win] == 0)  losses[win] = -1;
+            if (losses[loss] == -1)  losses[loss] = 1;
+            else losses[loss]++;  
+        }
         
-        int n=arr.length;
-        
-        List<List<Integer>> l = new ArrayList<>();
-        l.add(new ArrayList<>());
-        l.add(new ArrayList<>());
-        
-        for(int i=0;i<n;i++){
-            m.put(arr[i][1],  m.getOrDefault(arr[i][1], 0)+1);
-            m1.put(arr[i][0],  m.getOrDefault(arr[i][0], 0)+1);
-        } 
-        
-        for(int i: m.keySet()) if(m.get(i)==1) l.get(1).add(i); 
-        for(int i: m1.keySet()) if(!m.containsKey(i)) l.get(0).add(i); 
-        
-        return l;
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> zeroLoss = new ArrayList<>();
+        List<Integer> oneLoss = new ArrayList<>();
+
+        for (int i = 0; i < losses.length; i++) {
+            if (losses[i] == -1) zeroLoss.add(i);
+            else if (losses[i] == 1) oneLoss.add(i);
+        }
+        result.add(zeroLoss);
+        result.add(oneLoss);
+
+        return result;
     }
 }
