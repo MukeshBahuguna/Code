@@ -4,22 +4,22 @@ class Solution {
         int[] avg= new int[n];
         Arrays.fill(avg,-1);
         
-        int endSub=k*2;
-        if(endSub+1 >n) return avg;
+        int endSub=k*2+1;
+        if(endSub>n) return avg;
         
         long sum=0;
-        for(int i=0 ; i<endSub+1 ;i++){
+        for(int i=0 ; i<endSub ;i++){
             sum+=nums[i];
         }
-        long ans=sum/(endSub+1);
+        long ans=sum/endSub;
         avg[k]=(int)ans;
         
-        int j=endSub+1;
+        int j=endSub;
         for(int i=k+1 ; i<n-k ;i++){
             sum+= nums[j];
             sum-= nums[i-k-1];
             
-            ans=sum/(endSub+1);
+            ans=sum/endSub;
             avg[i]=(int)ans;
             j+=1;
         }
