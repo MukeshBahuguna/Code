@@ -63,24 +63,28 @@ class Twitter {
         
         Set<Integer> set = map.get(userId).followed;
         
-        PriorityQueue<Tweet> pq = new PriorityQueue<>((a,b)-> b.time - a.time);
+        //min heap-> 10 largest timeStamp right?
+        
+        PriorityQueue<Tweet> pq = new PriorityQueue<>(set.size() , (a,b)-> b.time - a.time);
         
         //as user follows itself as well 
-        for(int i :set){
-            User u =map.get(i);
-            traveseFollowed(u, pq);
-        }
         
-        while(l.size()<10 && !pq.isEmpty()) l.add(pq.poll().tweetId);
+        for(int i :set) addTweetHeadFollowed(map.get(i), pq);
+        
+        int n=0;
+        while(n<10 && !pq.isEmpty()){
+            Tweet t = pq.poll();
+            l.add(t.tweetId);
+            n+=1;
+            
+            if(t.next!=null) pq.add(t.next);
+        } 
         return l;
     }
     
-    public void traveseFollowed(User u, PriorityQueue<Tweet> pq ){
+    public void addTweetHeadFollowed(User u, PriorityQueue<Tweet> pq ){
         Tweet temp= u.t_head;
-        while(temp!=null){
-            pq.offer(temp);
-            temp=temp.next;
-        }
+        if(temp!=null) pq.offer(temp);
     }
     
     public void follow(int followerId, int followeeId) {
